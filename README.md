@@ -18,7 +18,7 @@
    npm run dev 
    ```
 3. Либо выполните сборку и предпросмотр:
-```bash
-npm run build
-npm run preview
+   ```bash
+   npm run build
+   npm run preview
    ```
