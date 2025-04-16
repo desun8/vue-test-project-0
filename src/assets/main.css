@@ -1,35 +1,55 @@
-@import './base.css';
+:root {
+  --c-primary: #26518f;
+  --c-secondary: #fcfdfd;
+  --c-text-primary: #203d5d;
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  --page-gap: 20px;
+  --page-width: 600px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
   font-weight: normal;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
-  padding: 3px;
+body {
+  min-height: 100vh;
+  background-color: var(--c-secondary);
+  color: var(--c-text-primary);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+.wrapper {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 var(--page-gap);
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
+.icon-eur,
+.icon-rub,
+.icon-usd {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  border-radius: 6px;
+}
 
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+.icon-eur {
+  background-image: url('./icons/euro.svg');
+}
+
+.icon-rub {
+  background-image: url('./icons/rub.svg');
+}
+
+.icon-usd {
+  background-image: url('./icons/usd.svg');
 }
