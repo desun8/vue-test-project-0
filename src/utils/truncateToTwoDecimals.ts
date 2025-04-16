@@ -1,3 +1,3 @@
 export function truncateToTwoDecimals(num: number) {
-  return Math.round(num * 100) / 100
+  return Math.trunc(num * 100) / 100
 }

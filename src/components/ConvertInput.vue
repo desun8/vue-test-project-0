@@ -1,22 +1,40 @@
 <script setup lang="ts">
-import { truncateToTwoDecimals } from '@/utils/truncateToTwoDecimals'
 import CurrencyDropdown from './CurrencyDropdown.vue'
-import { watch } from 'vue'
 
-defineEmits(['updateInput'])
-
+const emit = defineEmits(['updateInput'])
 const value = defineModel<number>()
 const currency = defineModel<string>('currency')
 
-watch(value, () => {
-  if (value.value === undefined) return
-  value.value = Math.abs(truncateToTwoDecimals(value.value))
-})
+function handleInput(e: Event) {
+  const inputEl = e.target as HTMLInputElement
+  const val = inputEl.value.replace(',', '.')
+
+  if (val.includes('.')) {
+    let [int, dec] = val.split('.')
+    dec = dec.slice(0, 2)
+    inputEl.value = int + '.' + dec
+    value.value = Number(inputEl.value)
+  }
+
+  emit('updateInput')
+}
+
+function handleKeyDown(e: KeyboardEvent) {
+  if (e.key === '-' || e.key === '+') {
+    e.preventDefault()
+  }
+}
 </script>
 
 <template>
   <div :class="cls.ConvertInput">
-    <input v-model="value" :class="cls.input" type="number" @input="$emit('updateInput')" />
+    <input
+      v-model="value"
+      :class="cls.input"
+      type="number"
+      @input="handleInput"
+      @keydown="handleKeyDown"
+    />
     <CurrencyDropdown v-model="currency" unstyled />
   </div>
 </template>
